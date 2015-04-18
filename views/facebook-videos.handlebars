@@ -1,0 +1,70 @@
+
+
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <ul class="nav navbar-nav">
+            <li><a href="/" class="glyphicon glyphicon-home" alt="Home"></a> </li>
+            <li><a href="/facebook-account"><span class="glyphicon glyphicon-user"></span> Account</a> </li>
+            <li><a href="/facebook-videos"><span class="glyphicon glyphicon-facetime-video"></span> Video Feed</a> </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="/logout"> <span class="glyphicon glyphicon-off"></span> Logout</a> </li>
+        </ul>
+    </div>
+</nav>
+
+
+<!--
+<div class="jumbotron text-center">
+    <span class="glyphicon glyphicon-camera" style="font-size: 50px"></span>
+    <p class="lead">Assignment 1</p>
+</div>
+-->
+
+
+
+<div class="images-container">
+
+    <div class="alert alert-success alert-dismissable hidden-alert" role="alert">
+        <div class="row">
+            Photo liked! <small>(not really because the API doesn't support it)</small>
+            <button type="button" class="close close-alert-btn" onclick="$('.hidden-alert').hide()">&times</button>
+        </div>
+
+    </div>
+
+    {{#each url.data}}
+        <!-- Entire "view" of a photo from the feed -->
+        <div class="col-md-4 col-sm-6 col-xs-12 image-item">
+            <!-- For each photo, first we like instagram app extract profile photo and name of person who submitted-->
+            <div class="image-item-header">
+                <img src="{{picture}}" class="img-circle small-profile-pic">
+                <b>{{name}}</b>
+            </div>
+
+            <div class="video-item">
+                <!-- The actual image itself -->
+                <div class="embed-responsive embed-responsive-16by9" align="center">
+                    <!-- The actual image... -->
+
+                        <!-- The actual image... -->
+                            <video width="250" height="300" controls preload="none" class="embed-responsive-item">
+                                <source src="{{source}}" >
+                            </video>
+
+
+
+                </div>
+            </div>
+
+
+
+
+
+
+        </div>
+    {{/each}}
+
+</div>
+
+

@@ -1,1 +1,78 @@
-<p class="lead">this is facebook</p>
+<nav class="navbar navbar-default navbar-fixed-top" xmlns="http://www.w3.org/1999/html">
+    <div class="container">
+        <ul class="nav navbar-nav">
+            <li><a href="/" class="glyphicon glyphicon-home" alt="Home"></a> </li>
+            <li><a href="/facebook-account"><span class="glyphicon glyphicon-user"></span> Account</a> </li>
+            <li><a href="/facebook-videos"><span class="glyphicon glyphicon-facetime-video"></span> Video Feed</a> </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="/logout"> <span class="glyphicon glyphicon-off"></span> Logout</a> </li>
+        </ul>
+    </div>
+</nav>
+
+<!--<div class="jumbotron text-center">
+    <span class="glyphicon glyphicon-camera" style="font-size: 50px"></span>
+
+    <p class="lead">Assignment 1</p>
+</div>
+-->
+
+<div class="col-md-12 account-container">
+    <div class="account-info-container">
+        <div class="row account-info-profile-pic">
+            <img src="{{picture}}" class="img-circle"/>
+        </div>
+        <div class="row account-info-container-row">
+            <p class="lead welcome-header bio"><em>Hi, {{user.first_name}} <span class="glyphicon glyphicon-user"></em></span>
+            <h6><small>{{me.bio}}</small></h6></p>
+        </div>
+
+
+            <br>
+
+            <table class="table table-hover">
+                <tbody>
+                <tr>
+                    <td>Facebook ID</td>
+                    <td>{{me.id}}</td>
+                </tr>
+                <tr>
+                    <td>Full Name</td>
+                    <td>{{me.first_name}} {{me.last_name}}</td>
+                </tr>
+                </tbody>
+            </table>
+
+
+
+
+            <p class="lead">About me <span class="glyphicon glyphicon-signal"></span></p>
+
+
+        <table class="table table-hover">
+            <tbody>
+            <tr>
+                <td>Profile Page</td>
+                <td><a href="{{user.link}}">Visit the page</a></td>
+            </tr>
+            <tr>
+                <td>Born in</td>
+                <td>{{me.hometown.name}}</td>
+            </tr>
+            <tr>
+                <td>Residing in</td>
+                <td> {{me.location.name}}</td>
+            </tr>
+            </tbody>
+        </table>
+
+            <button class="btn btn-warning btn-circle" onclick="location.href='/facebook-videos'" alt="View your feed"><span class="glyphicon glyphicon-facetime-video"></span></button>
+
+
+    </div>
+
+
+</div>
+
+<br>

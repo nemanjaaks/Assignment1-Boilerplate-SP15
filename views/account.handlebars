@@ -1,4 +1,77 @@
-hello account
-<p>ID: {{user.id}}</p>
-<p>Username: {{user.username}}</p>
-<p>Name:{{user.displayName}}</p>
+
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <ul class="nav navbar-nav">
+            <li><a href="/" class="glyphicon glyphicon-home" alt="Home"></a> </li>
+            <li><a href="/account"><span class="glyphicon glyphicon-user"></span> Account</a> </li>
+            <li><a href="/photos"><span class="glyphicon glyphicon-camera"></span> InstaFeed</a> </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="/logout"> <span class="glyphicon glyphicon-off"></span> Logout</a> </li>
+        </ul>
+    </div>
+</nav>
+
+
+<!--<div class="jumbotron text-center">
+    <span class="glyphicon glyphicon-camera" style="font-size: 50px"></span>
+
+    <p class="lead">Assignment 1</p>
+</div>
+-->
+
+<div class="col-md-12 account-container container">
+    <div class="account-info-container">
+        <div class="row account-info-profile-pic">
+            <img src="{{user.photo}}" class="img-circle"/>
+        </div>
+        <div class="row account-info-container-row">
+            <p class="lead welcome-header bio">{{user.name}} <span class="glyphicon glyphicon-user"></span>
+            <h6><small>{{user.bio}}</small></h6></p>
+
+
+            <br>
+
+            <table class="table table-hover">
+                <tbody>
+                <tr>
+                    <td>Instagram ID</td>
+                    <td>{{user.ig_id}}</td>
+                </tr>
+                <tr>
+                    <td>Name</td>
+                    <td>{{user.full_name}}</td>
+                </tr>
+                </tbody>
+            </table>
+
+
+                <p class="lead">Statistics <span class="glyphicon glyphicon-signal"></span></p>
+
+
+
+            <table class="table table-hover">
+                <tbody>
+                <tr>
+                    <td>Follows</td>
+                    <td> {{user.follows_count}} people</td>
+                </tr>
+                <tr>
+                    <td> Followed by</td>
+                    <td>{{user.follower_count}} people</td>
+                </tr>
+                <tr>
+                    <td> Images shared</td>
+                    <td>{{user.media_count}} images</td>
+                </tr>
+                </tbody>
+            </table>
+                <button class="btn btn-warning btn-circle" onclick="location.href='/photos'" alt="View your feed"><span class="glyphicon glyphicon-picture"></span></button>
+
+        </div>
+    </div>
+
+
+</div>
+
+<br>

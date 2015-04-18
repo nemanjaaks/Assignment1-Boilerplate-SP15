@@ -1,9 +1,166 @@
-@import url("http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,700");
 
 body {
-    font-family: Open Sans;
-    font-size: 14px;
-    line-height: 1.42857;
     background: #333333;
+    padding-top: 50px;
+}
+
+@media (max-width: 768px) {
+    body {
+        padding-top: 170px;
+        padding-bottom: 42px;
+    }
+}
+
+dl dt{
+    float: left;
+    text-align: left;
+}
+
+.images-container{
+    margin-top: 50px;
+}
+
+#like-the-photo{
+    color: #c12e2a;
+}
+
+.account-info-container-row{
+    margin: auto;
+}
+
+.bio{
+    height: 5px;
+}
+.table-hover tr:hover{
+    color: #000000;
+}
+.btn-circle{
+    width: 70px;
+    height: 70px;
+    text-align: center;
+    padding: 6px 0;
+    font-size: 22px;
+    line-height: 1.428571429;
+    border-radius: 35px;
+    margin-bottom: 50px;
+}
+
+.hidden-alert{
+    display: none;
+    opacity: 0.7;
+    margin:auto;
+    margin-bottom: 50px;
+    width: 96%;
+    color: #000000;
+    text-align: center;
+}
+
+.close-alert-btn{
+    margin-right: 10px;
+    color: #000000;
+}
+
+
+.btn-transparent {
+    border: none;
+    padding: 0;
+}
+
+.info-box{
+    text-align: center;
+    margin-left: -10%;
 
 }
+
+.account-container{
+    color: #ffffff;
+    width: 100%;
+    height: 500px;
+    align-content: center;
+    text-align: center;
+    margin-top: 100px;
+    margin-bottom: 50px;
+}
+
+.account-info-container{
+    background: #c12e2a;
+    width: 300px;
+    display: table;
+    margin: auto;
+
+}
+
+.account-info-profile-pic{
+    margin-top: 30px;
+}
+
+.image-item {
+    width: 300px;
+    height: 300px;
+    margin-bottom: 100px;
+    color: #ffffff;
+    font-size: 10px;
+
+}
+
+.image-item-header{
+    height: 40px;
+    background: #ffffff;
+    color: #000000;
+    padding: 5px;
+}
+
+.small-profile-pic{
+    width: 30px;
+    height: 30px;
+}
+
+.image-item-overlay{
+    display: none;
+    position: absolute;
+    background: #000;
+    margin: auto;
+}
+
+.video-item{
+    width: 270px;
+    height: 300px;
+    background: #000;
+
+}
+.image-item-only{
+    width: 100%;
+    height: 100%;
+}
+
+ .image-item-with-overlay:hover .image-item-overlay{
+    display: table-cell;
+    opacity: 0.7;
+    width:90%;
+    height:270px;
+    vertical-align: middle;
+     text-align: center;
+    line-height: 270px;
+}
+
+
+
+.image-item-caption{
+    height: 60px;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+    overflow: hidden;
+    background: #ffffff;
+    color: #000000;
+    padding: 5px;
+}
+
+.image-item-caption-text{
+    color: #000;
+}
+
+
+.like-overlay{
+    font-size: 40px;
+}
+
