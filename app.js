@@ -270,12 +270,14 @@ passport.use(new FacebookStrategy({
         process.nextTick(function(){
             if(true){
                 models.fbUser.findOne({'fb_id':profile.id}, function(err,user){
+                    sess = req.session;
                     if(err){
                         return done(err);
                     }
                     if(user){
                         //User entry exists
                         console.log('User entry exits' );
+
                         sess.fb_id = profile.id;
                         user.fb_id =profile.id;
                         user.last_name = profile.name.familyName;
@@ -405,10 +407,15 @@ app.get('/', function(req, res){
 
 app.get('/login', function(req, res){
   res.render('login', { user: req.user });
+    sess = req.session;
+    sess.fb_id;
+    sess.ig_id;
 });
 
 app.get('/account', ensureAuthenticatedInstagram, function(req, res){
   console.log('req contains'+JSON.stringify(req.user));
+    sess = req.session;
+    sess.ig_id=req.user.ig_id;
   res.render('account', {user:req.user});
 });
 
@@ -504,7 +511,10 @@ app.get('/auth/facebook/callback',
 
 
 app.get('/facebook-account',ensureAuthenticatedFacebook, function(req, res){
-
+    sess = req.session;
+    if(sess.fb_id != null){
+        sess.fb_id = req.user.fb_id;
+    }
     console.log('INSIDE FB ACC'+req.user);
     var query = models.fbUser.where({fb_id: req.user.fb_id});
     query.findOne(function(err,user){
