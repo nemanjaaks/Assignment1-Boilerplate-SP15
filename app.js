@@ -375,7 +375,7 @@ function ensureAuthenticated(req, res, next) {
 function ensureAuthenticatedFacebook(req, res, next) {
     console.log('FBauth is called auth');
     console.log('1AuthFB'+JSON.stringify(req.user));
-    if (req.isAuthenticated() && !!req.user.fb_id) {
+    if (req.isAuthenticated() && !req.user.fb_id) {
         return next();
     }
     res.redirect('/login');
