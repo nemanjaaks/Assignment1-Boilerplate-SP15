@@ -15,6 +15,8 @@ var mongoose = require('mongoose');
 var graph = require('fbgraph');
 var app = express();
 
+
+var sess;
 //local dependencies
 var models = require('./models');
 
@@ -84,6 +86,7 @@ passport.use(new InstagramStrategy({
                   if(user){
                       //User entry exists
                       console.log('User entry exits' );
+                      sess.ig_id = profile.id;
                       user.ig_id =profile.id;
                       user.name = profile.username;
                       user.full_name = profile._json.data.full_name;
@@ -106,6 +109,7 @@ passport.use(new InstagramStrategy({
                   else{
                       //create user
                       var usr = new models.User();
+                      sess.ig_id = profile.id;
                       usr.ig_id =profile.id;
                       usr.name = profile.username;
                       usr.full_name = profile._json.data.full_name;
@@ -272,6 +276,7 @@ passport.use(new FacebookStrategy({
                     if(user){
                         //User entry exists
                         console.log('User entry exits' );
+                        sess.fb_id = profile.id;
                         user.fb_id =profile.id;
                         user.last_name = profile.name.familyName;
                         user.first_name= profile.name.givenName;
@@ -293,6 +298,7 @@ passport.use(new FacebookStrategy({
                     else{
                         //create user
                         var usr = new models.fbUser();
+                        sess.fb_id = profile.id;
                         usr.fb_id =profile.id;
                         usr.last_name = profile.name.familyName;
                         usr.first_name= profile.name.givenName;
@@ -375,7 +381,7 @@ function ensureAuthenticated(req, res, next) {
 function ensureAuthenticatedFacebook(req, res, next) {
     console.log('FBauth is called auth');
     console.log('1AuthFB'+JSON.stringify(req.user));
-    if (req.isAuthenticated() && !req.user.fb_id) {
+    if (req.isAuthenticated() && !!sess.fb_id) {
         return next();
     }
     res.redirect('/login');
@@ -548,7 +554,15 @@ app.get('/facebook-videos', ensureAuthenticatedFacebook,function(req,res){
 
 app.get('/logout', function(req, res){
   req.logout();
-  res.redirect('/');
+  req.session.destroy(function(err){
+      if(err){
+          console.log(err);
+      }
+      else
+      {
+          res.redirect('/');
+      }
+  });
 });
 
 http.createServer(app).listen(app.get('port'), function() {
