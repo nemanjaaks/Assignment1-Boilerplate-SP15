@@ -533,13 +533,6 @@ app.get('/facebook-videos', ensureAuthenticatedFacebook,function(req,res){
         if(user){
             graph.setAccessToken(req.user.access_token);
 
-            /*
-             graph.get('me/home?filter=app_2392950137',  function(err, response){
-             console.log(response);
-             res.render('facebook-account', {user: req.user, url:response});
-             });
-
-             */
             graph.get('me/home?filter=app_2392950137',  function(err, response){
                 console.log(response);
                 res.render('facebook-videos', {user: req.user, url:response});
