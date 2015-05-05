@@ -514,9 +514,7 @@ app.get('/auth/facebook/callback',
 
 app.get('/facebook-account',ensureAuthenticatedFacebook, function(req, res){
     sess = req.session;
-    if(sess.fb_id != null){
-        sess.fb_id = req.user.fb_id;
-    }
+    
     console.log('INSIDE FB ACC'+req.user);
     var query = models.fbUser.where({fb_id: sess.fb_id});
     query.findOne(function(err,user){
