@@ -536,15 +536,15 @@ app.get('/facebook-account',ensureAuthenticatedFacebook, function(req, res){
 
 app.get('/facebook-videos', ensureAuthenticatedFacebook,function(req,res){
     console.log('INSIDE FB ACC'+req.user);
-    var query = models.fbUser.where({fb_id: req.user.fb_id});
+    var query = models.fbUser.where({fb_id: sess.fb_id});
     query.findOne(function(err,user){
         if(err) return handleError(err);
         if(user){
-            graph.setAccessToken(req.user.access_token);
+            graph.setAccessToken(user.access_token);
 
             graph.get('me/home?filter=app_2392950137',  function(err, response){
                 console.log(response);
-                res.render('facebook-videos', {user: req.user, url:response});
+                res.render('facebook-videos', {user: user, url:response});
             });
 
         }
