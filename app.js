@@ -80,6 +80,7 @@ passport.use(new InstagramStrategy({
            if(true){
                console.log("InstaSignIn with profile" + profile);
                models.User.findOne({'ig_id':profile.id}, function(err,user){
+                  sess = req.session;
                   if(err){
                       return done(err);
                   }
@@ -390,7 +391,7 @@ function ensureAuthenticatedFacebook(req, res, next) {
 }
 
 function ensureAuthenticatedInstagram(req, res, next) {
-    if (req.isAuthenticated() && !!req.user.ig_id) {
+    if (req.isAuthenticated() && !!sess.ig_id) {
         console.log('AuthINSTA'+req.user.ig_id);
         return next();
     }
@@ -421,7 +422,8 @@ app.get('/account', ensureAuthenticatedInstagram, function(req, res){
 
 app.get('/photos', ensureAuthenticatedInstagram, function(req, res){
     console.log('PHOTOS for '+ req.user.ig_id);
-  var query  = models.User.where({ ig_id: req.user.ig_id });
+    sess = req.session;
+  var query  = models.User.where({ ig_id: sess.ig_id });
   query.findOne(function (err, user) {
     if (err) return handleError(err);
     if (user) {
@@ -435,7 +437,7 @@ app.get('/photos', ensureAuthenticatedInstagram, function(req, res){
           var imageArr = data.map(function(item) {
             //create temporary json object
             tempJSON = {};
-            tempJSON.user = req.user.username;
+            tempJSON.user = user.username;
             tempJSON.photo_id = item.id;
             tempJSON.poster = item.user;
             tempJSON.caption = item.caption;
@@ -516,11 +518,11 @@ app.get('/facebook-account',ensureAuthenticatedFacebook, function(req, res){
         sess.fb_id = req.user.fb_id;
     }
     console.log('INSIDE FB ACC'+req.user);
-    var query = models.fbUser.where({fb_id: req.user.fb_id});
+    var query = models.fbUser.where({fb_id: sess.fb_id});
     query.findOne(function(err,user){
         if(err) return handleError(err);
         if(user){
-            graph.setAccessToken(req.user.access_token);
+            graph.setAccessToken(user);
 
             /*
             graph.get('me/home?filter=app_2392950137',  function(err, response){
@@ -532,7 +534,7 @@ app.get('/facebook-account',ensureAuthenticatedFacebook, function(req, res){
             graph.get('me', function(error, response){
                 console.log(response);
                 graph.get('me/picture?width=150&height=150', function(errr, inner_res){
-                    res.render('facebook-account', {user: req.user, me: response , picture: inner_res.location});
+                    res.render('facebook-account', {user: user, me: response , picture: inner_res.location});
                 });
 
 
