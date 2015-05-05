@@ -397,7 +397,10 @@ function ensureAuthenticatedInstagram(req, res, next) {
 
 //routes
 app.get('/', function(req, res){
+  sess = req.session;
   res.render('login');
+  sess.fb_id;
+  sess.ig_id;
 });
 
 app.get('/login', function(req, res){
