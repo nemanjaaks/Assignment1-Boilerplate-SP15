@@ -415,8 +415,19 @@ app.get('/login', function(req, res){
 
 app.get('/account', ensureAuthenticatedInstagram, function(req, res){
   console.log('req contains'+JSON.stringify(req.user));
-    sess = req.session;
-  res.render('account', {user:req.user});
+  sess = req.session;
+
+  var query  = models.User.where({ ig_id: sess.ig_id });
+    query.findOne(function (err, user) {
+        if (err) return handleError(err);
+        if (user) {
+            res.render('account', {user:user});
+        }else{
+            res.redirect("/login");
+        }
+    });
+
+
 });
 
 app.get('/photos', ensureAuthenticatedInstagram, function(req, res){
