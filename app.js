@@ -416,7 +416,7 @@ app.get('/login', function(req, res){
 app.get('/account', ensureAuthenticatedInstagram, function(req, res){
   console.log('req contains'+JSON.stringify(req.user));
     sess = req.session;
-    sess.ig_id=req.user.ig_id;
+    
   res.render('account', {user:req.user});
 });
 
