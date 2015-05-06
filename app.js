@@ -392,7 +392,7 @@ function ensureAuthenticatedFacebook(req, res, next) {
 
 function ensureAuthenticatedInstagram(req, res, next) {
     if (req.isAuthenticated() && !!sess.ig_id) {
-        console.log('AuthINSTA'+req.user.ig_id);
+        console.log('AuthINSTA'+!!sess.ig_id);
         return next();
     }
     res.redirect('/login');
@@ -416,7 +416,6 @@ app.get('/login', function(req, res){
 app.get('/account', ensureAuthenticatedInstagram, function(req, res){
   console.log('req contains'+JSON.stringify(req.user));
     sess = req.session;
-    
   res.render('account', {user:req.user});
 });
 
